@@ -75,14 +75,14 @@ editor.setTheme("ace/theme/twilight");
 By default the editor only supports plain text mode; many other languages are available as separate modules. After including the mode's JavaScript file:
 
 ```html
-<script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="src/mode-uvms.js" type="text/javascript" charset="utf-8"></script>
 ```
 
 The mode can then be used like this:
 
 ```javascript
-var JavaScriptMode = ace.require("ace/mode/javascript").Mode;
-editor.session.setMode(new JavaScriptMode());
+var UvmsMode = ace.require("ace/mode/uvms").Mode;
+editor.session.setMode(new UvmsMode());
 ```
 
 to destroy editor use

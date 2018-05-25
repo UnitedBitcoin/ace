@@ -68,21 +68,97 @@
                                 and is the successor of the Mozilla Skywriter (Bespin) project.
                             </p>
                             
-                                <pre id="ace_editor_demo" style="opacity:0">/**
- * In fact, you're looking at ACE right now. Go ahead and play with it!
- *
- * We are currently showing off the JavaScript mode. ACE has support for 45
- * language modes and 24 color themes!
- */
+                                <pre id="ace_editor_demo" style="opacity:0">
+.upvalues 1  ;L1;  comment test
 
-function add(x, y) {
-    var resultString = "Hello, ACE! The result of your math is: ";
-    var result = x + y;
-    return resultString + result;
-}
+; comment here
+.func main 5 0 2 ; source: @test.java ; maxstacksize: 5, params: 0, vararg: 2 (declared vararg)
+.begin_const
+    "asd"
+    "Hello\nabc"
+    " world!"
+    1
+    2
+    3
+.end_const
 
-var addResult = add(3, 2);
-console.log(addResult);
+
+.begin_upvalue
+    1 0
+.end_upvalue
+
+
+.begin_code
+    loadk %0 const "asd"
+    closure %1 subroutine_2
+
+    move %2 %1
+    loadk %3 const "Hello\nabc"  ;L10; this is a line position comment
+    loadk %4 const " world!"
+    call %2 3 1
+
+    loadk %4 const "test"
+    push %4
+    gettop %3
+
+    cmp_eq %4 const 2 const 3
+
+    gettabup %2 @0 const "print"
+    call %2 3 1
+
+    return %0 1
+.end_code
+
+
+.func subroutine_2 5 0 1 ; maxstacksize: 5, params: 0, vararg: 1 (uses vararg)
+.begin_const
+    "table"
+    "concat"
+    ","
+    "print"
+.end_const
+
+
+.begin_upvalue
+    0 0 "ddd"
+.end_upvalue
+
+
+.begin_code
+    gettabup %0 @0 const "table" ; debug name: _ENV
+    gettable %0 %0 const "concat"
+    newtable %1 0 0
+    vararg %2 0
+    setlist %1 0 1
+    loadk %2 const ","
+    call %0 3 2
+    cmp %20 %18 %19 ;L247;;    LCM
+    closure %1 subroutine_3
+    move %2 %1
+    gettabup %3 @0 const "print" ; debug name: _ENV
+    move %4 %0
+    tailcall %2 3 0
+    return %2 0
+    return %0 1
+.end_code
+
+
+.func subroutine_3 4 2 0 ; maxstacksize: 4, params: 2, vararg: 0 (does not use varag)
+.begin_const
+.end_const
+
+
+.begin_upvalue
+.end_upvalue
+
+
+.begin_code
+    move %2 %0
+    move %3 %1
+    tailcall %2 2 0
+    return %2 0
+    return %0 1
+.end_code                                      
 </pre>
                             <p id="embed_link"><a href="#nav=embedding">Learn how to embed this in your own site</a></p>
                             <p class="highlight_note">Looking for a more full-featured demo? Check out the
@@ -115,7 +191,7 @@ console.log(addResult);
                                 or not. Take charge of your editor and add your favorite language
                                 highlighting and keybindings!
                             </p>
-                            <pre>git clone git://github.com/ajaxorg/ace.git</pre>
+                            <pre>git clone git://github.com/UnitedBitcoin/uvm-ace.git</pre>
                             <h2>History</h2>
                             <p>Skywriter/Bespin and Ace started
                                 as two independent projects both aiming to build a no compromise
@@ -159,16 +235,48 @@ console.log(addResult);
 &lt;/head>
 &lt;body>
 
-&lt;div id="editor">function foo(items) {
-    var x = "All this is syntax highlighted";
-    return x;
-}&lt;/div>
+&lt;div id="editor">
+.upvalues 1  ;L1;  comment test
+
+; comment here
+.func main 5 0 2 ; source: @test.lua ; maxstacksize: 5, params: 0, vararg: 2 (declared vararg)
+.begin_const
+   "asd"
+   "Hello\nabc"
+   " world!"
+   1
+   2
+   3
+.end_const
+
+
+.begin_upvalue
+   1 0
+.end_upvalue
+
+
+.begin_code
+   loadk %0 const "asd"
+
+   loadk %4 const "test"
+   push %4
+   gettop %3
+
+   cmp_eq %4 const 2 const 3
+
+   gettabup %2 @0 const "print"
+   call %2 3 1
+
+   return %0 1
+.end_code
+
+&lt;/div>
     
 &lt;script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8">&lt;/script>
 &lt;script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
-    editor.session.setMode("ace/mode/javascript");
+    editor.session.setMode("ace/mode/uvms");
 &lt;/script>
 &lt;/body>
 &lt;/html></pre>
@@ -194,7 +302,7 @@ console.log(addResult);
                             <p>there are several ways to pass configuration to Ace</p>
                             <pre><code class="javascript">// pass options to ace.edit
 ace.edit(element, {
-    mode: "ace/mode/javascript",
+    mode: "ace/mode/uvms",
     selectionStyle: "text"
 })
 // use setOptions method to set several options at once

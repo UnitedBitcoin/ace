@@ -13,7 +13,7 @@ $(function() {
         
         editor.setOptions({
             maxLines: 30,
-            mode: "ace/mode/javascript",
+            mode: "ace/mode/uvms",
             autoScrollEditorIntoView: true
         });
         

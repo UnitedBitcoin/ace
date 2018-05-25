@@ -2,7 +2,7 @@ var editor;
 var embedded_editor;
 $(function() {
     if (typeof ace !== "undefined") {
-        ace.config.set("workerPath", "build/src-min");
+        ace.config.set("workerPath", "build2/src-min");
         editor = ace.edit("ace_editor_demo");
         editor.container.style.opacity = "";
         embedded_editor = ace.edit("embedded_ace_code");
@@ -38,7 +38,7 @@ $(function() {
         document.body.insertAdjacentHTML("afterbegin", '<div class="bs-docs-example">\
             <div class="alert alert-error">\
               <button type="button" class="close" data-dismiss="alert">\xd7</button>\
-              <strong>Oh No!</strong> Couldn\'t load <code>build/src/ace.js</code>.<br>\
+              <strong>Oh No!</strong> Couldn\'t load <code>build2/src/ace.js</code>.<br>\
                 You can build it by running <code>npm install ; node Makefile.dryice.js</code><br>\
                 Or download older version by running <code>git submodule update --init --recursive</code><br>\
             </div>\

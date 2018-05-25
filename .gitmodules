@@ -4,3 +4,6 @@
 [submodule "build"]
 	path = build
 	url = https://github.com/UnitedBitcoin/uvm-ace-builds.git
+[submodule "build2"]
+	path = build2
+	url = https://github.com/UnitedBitcoin/uvm-ace-builds.git
